@@ -4,10 +4,10 @@ import "./UnityGame.css";
 
 function UnityGame() {
   const { unityProvider } = useUnityContext({
-    codeUrl: "/build/8 Level Build.wasm",
-    frameworkUrl: "/build/8 Level Build.framework.js",
-    dataUrl: "/build/8 Level Build.data",
-    loaderUrl: "/build/8 Level Build.loader.js",
+    codeUrl: "/build/8LevelBuild.wasm",
+    frameworkUrl: "/build/8LevelBuild.framework.js",
+    dataUrl: "/build/8LevelBuild.data",
+    loaderUrl: "/build/8LevelBuild.loader.js",
   });
 
   return <Unity unityProvider={unityProvider} className="Platformer" />;
