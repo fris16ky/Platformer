@@ -1,7 +1,12 @@
 function createUnityInstance(t, r, d) {
+  "use strict";
   function i(e, t) {
-    if (!i.aborted && r.showBanner)
-      return "error" == t && (i.aborted = !0), r.showBanner(e, t);
+    if (!i.aborted && r.showBanner) {
+      if ("error" == t) {
+        i.aborted = !0;
+      }
+      return r.showBanner(e, t);
+    }
     switch (t) {
       case "error":
         console.error(e);
@@ -350,12 +355,12 @@ function createUnityInstance(t, r, d) {
                         (r = /Firefox/.test(navigator.userAgent)
                           ? "Unable to parse " +
                             c.frameworkUrl +
-                            '!<br>If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported in Firefox over HTTP connections. ' +
+                            '!<br />If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported in Firefox over HTTP connections. ' +
                             n +
                             ' See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1670675">https://bugzilla.mozilla.org/show_bug.cgi?id=1670675</a> for more information.'
                           : "Unable to parse " +
                             c.frameworkUrl +
-                            '!<br>If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported over HTTP connections. Migrate your server to use HTTPS.')),
+                            '!<br />If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported over HTTP connections. Migrate your server to use HTTPS.')),
                       void i(r, "error"))
                 );
             }
