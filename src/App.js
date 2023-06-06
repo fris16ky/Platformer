@@ -10,13 +10,17 @@ function App() {
   return (
     <>
       {/* Contains our pages/paths */}
-      <Router>
+      <Router basename="/Platformer">
         <Navbar />
         <Routes>
           {/* path="/" is to send Home */}
-          <Route path="/" exact Component={Home}></Route>
-          <Route path="/UnityGame" exact Component={UnityGame} />
-          <Route path="/Collectibles" exact Component={Collectibles} />
+          <Route path="/Platformer" exact Component={Home}></Route>
+          <Route path="/Platformer/UnityGame" exact Component={UnityGame} />
+          <Route
+            path="/Platformer/Collectibles"
+            exact
+            Component={Collectibles}
+          />
         </Routes>
       </Router>
     </>
