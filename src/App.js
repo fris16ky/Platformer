@@ -14,13 +14,9 @@ function App() {
         <Navbar />
         <Routes>
           {/* path="/" is to send Home */}
-          <Route path="/Platformer" exact Component={Home}></Route>
-          <Route path="/Platformer/UnityGame" exact Component={UnityGame} />
-          <Route
-            path="/Platformer/Collectibles"
-            exact
-            Component={Collectibles}
-          />
+          <Route path="/" exact Component={Home}></Route>
+          <Route path="/UnityGame" exact Component={UnityGame} />
+          <Route path="/Collectibles" exact Component={Collectibles} />
         </Routes>
       </Router>
     </>
