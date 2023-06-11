@@ -1,12 +1,7 @@
 function createUnityInstance(t, r, d) {
-  "use strict";
   function i(e, t) {
-    if (!i.aborted && r.showBanner) {
-      if ("error" == t) {
-        i.aborted = !0;
-      }
-      return r.showBanner(e, t);
-    }
+    if (!i.aborted && r.showBanner)
+      return "error" == t && (i.aborted = !0), r.showBanner(e, t);
     switch (t) {
       case "error":
         console.error(e);
@@ -273,7 +268,7 @@ function createUnityInstance(t, r, d) {
       E.link.href
     );
   }
-  function k(t) {
+  function P(t) {
     (t = t || {}),
       (this.headers = new Headers()),
       Object.keys(t.headers).forEach(
@@ -293,7 +288,7 @@ function createUnityInstance(t, r, d) {
         }.bind(this),
       });
   }
-  function P(e, t, r, n, o) {
+  function k(e, t, r, n, o) {
     var a = {
       url: e,
       version: m.version,
@@ -355,12 +350,12 @@ function createUnityInstance(t, r, d) {
                         (r = /Firefox/.test(navigator.userAgent)
                           ? "Unable to parse " +
                             c.frameworkUrl +
-                            '!<br />If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported in Firefox over HTTP connections. ' +
+                            '!<br>If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported in Firefox over HTTP connections. ' +
                             n +
                             ' See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1670675">https://bugzilla.mozilla.org/show_bug.cgi?id=1670675</a> for more information.'
                           : "Unable to parse " +
                             c.frameworkUrl +
-                            '!<br />If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported over HTTP connections. Migrate your server to use HTTPS.')),
+                            '!<br>If using custom web server, verify that web server is sending .br files with HTTP Response Header "Content-Encoding: br". Brotli compression may not be supported over HTTP connections. Migrate your server to use HTTPS.')),
                       void i(r, "error"))
                 );
             }
@@ -733,20 +728,20 @@ function createUnityInstance(t, r, d) {
       ((g = c.UnityCache),
       (m = g.RequestStore),
       (b = c.fetchWithProgress),
-      (k.prototype.arrayBuffer = function () {
+      (P.prototype.arrayBuffer = function () {
         return Promise.resolve(this.parsedBody.buffer);
       }),
-      (k.prototype.blob = function () {
+      (P.prototype.blob = function () {
         return this.arrayBuffer().then(function (e) {
           return new Blob([e]);
         });
       }),
-      (k.prototype.json = function () {
+      (P.prototype.json = function () {
         return this.text().then(function (e) {
           return JSON.parse(e);
         });
       }),
-      (k.prototype.text = function () {
+      (P.prototype.text = function () {
         var e = new TextDecoder();
         return Promise.resolve(e.decode(this.parsedBody));
       }),
@@ -787,10 +782,10 @@ function createUnityInstance(t, r, d) {
                           e
                       );
                     }),
-                  new k(s.result.response)
+                  new P(s.result.response)
                 );
               200 == e.status
-                ? ((s.result = P(e.url, s.company, s.product, s.accessed, e)),
+                ? ((s.result = k(e.url, s.company, s.product, s.accessed, e)),
                   (s.revalidated = !0),
                   a
                     .storeRequest(s.result)
@@ -842,7 +837,7 @@ function createUnityInstance(t, r, d) {
             ((s.control = o.control),
             (s.company = o.company),
             (s.product = o.product)),
-          (s.result = P(r, s.company, s.product, Date.now())),
+          (s.result = k(r, s.company, s.product, Date.now())),
           (s.revalidated = !1),
           s.enabled
             ? a
@@ -851,7 +846,7 @@ function createUnityInstance(t, r, d) {
                   if (!e || e.version !== m.version) return i(n, o);
                   (s.result = e), (s.result.accessed = Date.now());
                   var t,
-                    r = new k(s.result.response);
+                    r = new P(s.result.response);
                   return "immutable" == s.control
                     ? ((s.revalidated = !0),
                       a.storeRequest(s.result),
@@ -920,7 +915,11 @@ function createUnityInstance(t, r, d) {
       })),
     new Promise(function (e, t) {
       c.SystemInfo.hasWebGL
-        ? c.SystemInfo.hasWasm
+        ? 1 == c.SystemInfo.hasWebGL
+          ? t(
+              'Your browser does not support graphics API "WebGL 2" which is required for this content.'
+            )
+          : c.SystemInfo.hasWasm
           ? (1 == c.SystemInfo.hasWebGL &&
               c.print(
                 'Warning: Your browser does not support "WebGL 2" Graphics API, switching to "WebGL 1"'
